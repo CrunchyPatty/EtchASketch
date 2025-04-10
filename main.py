@@ -12,7 +12,7 @@ canvas.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 comport = 'COM11'
 baudrate = 9600
 
-# ser = serial.Serial(comport, baudrate)
+ser = serial.Serial(comport, baudrate)
 
 #Parameters
 res_size = 5
@@ -41,14 +41,14 @@ def update_canvas():
     global X,Y,LBut,cursor_drawing,filled_pixels
 
     #Take Serial Input
-    # data = ser.readline().decode().strip()
-    data = "{x = 0, y = 400, LBut = 0, RBut = 0}"
-    X += 5
+    data = ser.readline().decode().strip()
+    # data = "{x = 0, y = 400, LBut = 0, RBut = 0}"
+    # X += 5
     # print(type(data))
 
 
     #Parse Serial Input
-    # X = int(data[(data.find("x")+4) : data.find(",")])
+    X = int(data[(data.find("x")+4) : data.find(",")])
     Y = int(data[(data.find("y")+4) : data.find(",", data.find("y"))])
     LBut = bool(int(data[(data.find("LBut")+7)]))
     cursor_drawing = bool(int(data[(data.find("RBut")+7)]))
