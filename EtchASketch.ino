@@ -17,7 +17,7 @@ Encoder knobY(DTB, CLKB);
 
 void setup() { 
 
-	Serial.begin(BAUDRATE);
+  Serial.begin(BAUDRATE);
   Serial.setTimeout(TIMEOUT);
   pinMode(SWA, INPUT_PULLUP);
   pinMode(SWB, INPUT_PULLUP);
