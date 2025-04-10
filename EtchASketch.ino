@@ -15,6 +15,14 @@
 Encoder knobX(DTA, CLKA);
 Encoder knobY(DTB, CLKB);
 
+uint16_t posX = 400;
+uint16_t posY = 400;
+
+bool reset = 0;
+bool pen = 0;
+
+char buf[50];
+
 void setup() { 
 
   Serial.begin(BAUDRATE);
@@ -23,13 +31,6 @@ void setup() {
   pinMode(SWB, INPUT_PULLUP);
 }
 
-uint16_t posX = 400;
-uint16_t posY = 400;
-
-bool reset = 0;
-bool pen = 0;
-
-char buf[50];
 
 void loop() {
   
