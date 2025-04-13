@@ -33,12 +33,13 @@ void setup() {
   pinMode(SWA, INPUT_PULLUP);
   pinMode(SWB, INPUT_PULLUP);
   pinMode(PWRB, OUTPUT);
+  
+  digitalWrite(PWRB, HIGH);
 }
 
 
 void loop() {
 
-  digitalWrite(PWRB, HIGH);
 
   posX = constrain((knobX.read()/2)*10, 0, 790);
   posY = constrain((knobY.read()/2)*10, 0, 790);
