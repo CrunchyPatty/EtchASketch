@@ -11,6 +11,7 @@
 #define SWB 5
 #define DTB 3
 #define CLKB 4
+#define PWRB 10
 
 Encoder knobX(DTA, CLKA);
 Encoder knobY(DTB, CLKB);
@@ -31,11 +32,13 @@ void setup() {
   Serial.setTimeout(TIMEOUT);
   pinMode(SWA, INPUT_PULLUP);
   pinMode(SWB, INPUT_PULLUP);
+  pinMode(PWRB, OUTPUT);
 }
 
 
 void loop() {
-  
+
+  digitalWrite(PWRB, HIGH);
 
   posX = constrain((knobX.read()/2)*10, 0, 790);
   posY = constrain((knobY.read()/2)*10, 0, 790);
