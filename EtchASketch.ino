@@ -21,6 +21,8 @@ uint16_t posY = 400;
 bool reset = 0;
 bool pen = 0;
 
+unsigned long lastTime = 0;
+
 char buf[50];
 
 void setup() { 
@@ -34,14 +36,42 @@ void setup() {
 
 void loop() {
   
-  posX = constrain(knobX.read(), 0, 800);
-  posY = constrain(knobY.read(), 0, 800);
 
-  if (!digitalRead(SWB)) reset = 1;
-  else reset = 0;
+  posX = constrain((knobX.read()/2)*10, 0, 790);
+  posY = constrain((knobY.read()/2)*10, 0, 790);
+
+  if (posX >= 790){
+    posX = 790;
+    knobX.write(159); 
+  }
+  if (posX <= 0){
+    knobX.write(0);
+    posX = 0;
+  }
+  if (posY >= 790){
+    posY = 790;
+    knobY.write(159);
+  }
+  if (posY <= 0){
+    knobY.write(0);
+    posY = 0;
+  }
+  
+
+  if (!digitalRead(SWB)){
+    delay(200);
+    reset = 1;
+    lastTime = millis();
+    
+  } else {
+    if ((millis()-lastTime) > 1000) reset = 0;
+  }
+  
+  // reset = 0;
+  // else reset = 0;
 
   if (!digitalRead(SWA)) {
-    delay(100);
+    delay(200);
     pen = !pen;
   }
 
